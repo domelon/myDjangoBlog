@@ -2,8 +2,19 @@ from django.db import models
 from django.utils import timezone
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=30)
+
+    class Meta:
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category)
     title = models.CharField(max_length=200)
     subtitle = models.CharField(max_length=200, default='Null')
     image = models.ImageField(upload_to='gfx')
@@ -17,3 +28,5 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
