@@ -23,6 +23,8 @@
                 <br>
                 <p>{{ post.text|linebreaksbr }}</p>
                 <br>
+                <p>Kategorie: | {% for category in post.category.all %} <a href="/">{{ category }}</a> | {% endfor %}</p>
+                <br>
                 <p>Data: {{ post.published_data }}</p>
             </div>
         {% endfor %}
